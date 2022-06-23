@@ -1,0 +1,4 @@
+user:Hiroki Tamura
+date:2022/06/23
+changeFile:build/pdf.worker.js
+changeDetail:Don't throw an error when fetch method xref fetch fails.
