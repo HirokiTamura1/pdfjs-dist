@@ -91268,10 +91268,14 @@ var XRef = /*#__PURE__*/function () {
         return xrefEntry;
       }
 
-      if (xrefEntry.uncompressed) {
-        xrefEntry = this.fetchUncompressed(ref, xrefEntry, suppressEncryption);
-      } else {
-        xrefEntry = this.fetchCompressed(ref, xrefEntry, suppressEncryption);
+      try {
+        if (xrefEntry.uncompressed) {
+          xrefEntry = this.fetchUncompressed(ref, xrefEntry, suppressEncryption);
+        } else {
+          xrefEntry = this.fetchCompressed(ref, xrefEntry, suppressEncryption);
+        }
+      } catch (e) {
+        (0, _util.warn)("bBad (uncompressed) XRef entry: \"".concat(e, "\"."));
       }
 
       if ((0, _primitives.isDict)(xrefEntry)) {
