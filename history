@@ -12,3 +12,8 @@ user:Hiroki Tamura
 date:2022/07/12
 changeFile:build/pdf.worker.js,legacy/build/pdf.worker.js
 changeDetail:Changed exception handling to warning handling.
+
+user:Hiroki Tamura
+date:2022/07/12
+changeFile:package-lock.json
+changeDetail:Changed lockfileVersion.
