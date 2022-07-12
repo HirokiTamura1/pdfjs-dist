@@ -91268,14 +91268,10 @@ var XRef = /*#__PURE__*/function () {
         return xrefEntry;
       }
 
-      try {
-        if (xrefEntry.uncompressed) {
-          xrefEntry = this.fetchUncompressed(ref, xrefEntry, suppressEncryption);
-        } else {
-          xrefEntry = this.fetchCompressed(ref, xrefEntry, suppressEncryption);
-        }
-      } catch (e) {
-        (0, _util.warn)("bBad (uncompressed) XRef entry: \"".concat(e, "\"."));
+      if (xrefEntry.uncompressed) {
+        xrefEntry = this.fetchUncompressed(ref, xrefEntry, suppressEncryption);
+      } else {
+        xrefEntry = this.fetchCompressed(ref, xrefEntry, suppressEncryption);
       }
 
       if ((0, _primitives.isDict)(xrefEntry)) {
@@ -91308,7 +91304,8 @@ var XRef = /*#__PURE__*/function () {
       var obj3 = parser.getObj();
 
       if (obj1 !== num || obj2 !== gen || !(obj3 instanceof _primitives.Cmd)) {
-        throw new _core_utils.XRefEntryException("Bad (uncompressed) XRef entry: ".concat(ref));
+        (0, _util.warn)("Bad (uncompressed) XRef entry: ".concat(ref));
+        return null;
       }
 
       if (obj3.cmd !== "obj") {
