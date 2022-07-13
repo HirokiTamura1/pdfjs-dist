@@ -92057,7 +92057,12 @@ var XRef = /*#__PURE__*/function () {
       var obj2 = parser.getObj();
       var obj3 = parser.getObj();
 
-      if (obj1 !== num || obj2 !== gen || !(obj3 instanceof _primitives.Cmd)) {
+      if (obj1 !== num) {
+        (0, _util.warn)("Bad (uncompressed) XRef entry: ".concat(ref));
+        return null;
+      }
+
+      if (obj2 !== gen || !(obj3 instanceof _primitives.Cmd)) {
         throw new _core_utils.XRefEntryException("Bad (uncompressed) XRef entry: ".concat(ref));
       }
 

@@ -73572,7 +73572,12 @@ class XRef {
     const obj2 = parser.getObj();
     const obj3 = parser.getObj();
 
-    if (obj1 !== num || obj2 !== gen || !(obj3 instanceof _primitives.Cmd)) {
+    if (obj1 !== num) {
+      (0, _util.warn)(`Bad (uncompressed) XRef entry: ${ref}`);
+      return null;
+    }
+
+    if (obj2 !== gen || !(obj3 instanceof _primitives.Cmd)) {
       throw new _core_utils.XRefEntryException(`Bad (uncompressed) XRef entry: ${ref}`);
     }
 
