@@ -92025,7 +92025,7 @@ var XRef = /*#__PURE__*/function () {
       } catch (ex) {
         this._pendingRefs.remove(ref);
 
-        throw ex;
+        //throw ex;
       }
 
       if (xrefEntry instanceof _primitives.Dict) {
