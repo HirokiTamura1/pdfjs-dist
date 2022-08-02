@@ -70992,7 +70992,7 @@ class XRef {
 
       return xrefEntry;
     }
-
+    hogehoge
     if (xrefEntry.uncompressed) {
       try {
         xrefEntry = this.fetchUncompressed(ref, xrefEntry, suppressEncryption);
