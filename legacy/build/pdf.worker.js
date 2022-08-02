@@ -92410,8 +92410,8 @@ Object.defineProperty(exports, "WorkerMessageHandler", ({
 
 var _worker = __w_pdfjs_require__(1);
 
-var pdfjsVersion = '2.10.377';
-var pdfjsBuild = '156762c48';
+var pdfjsVersion = '2.10.378';
+var pdfjsBuild = 'ae9105be4';
 })();
 
 /******/ 	return __webpack_exports__;
