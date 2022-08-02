@@ -67,7 +67,7 @@ class DOMCanvasFactory extends _base_factory.BaseCanvasFactory {
   } = {}) {
     super();
     this._document = ownerDocument;
-  }
+  
 
   _createCanvas(width, height) {
     const canvas = this._document.createElement("canvas");

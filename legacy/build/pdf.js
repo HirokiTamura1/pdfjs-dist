@@ -134,7 +134,7 @@ exports.DOMCanvasFactory = DOMCanvasFactory;
 
 function fetchData(_x) {
   return _fetchData.apply(this, arguments);
-}
+
 
 function _fetchData() {
   _fetchData = _asyncToGenerator( /*#__PURE__*/_regenerator["default"].mark(function _callee(url) {
