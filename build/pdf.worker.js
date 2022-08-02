@@ -125,7 +125,7 @@ class WorkerMessageHandler {
     const WorkerTasks = [];
     const verbosity = (0, _util.getVerbosityLevel)();
     const apiVersion = docParams.apiVersion;
-    const workerVersion = '2.10.377';
+    const workerVersion = '2.10.378';
 
     if (apiVersion !== workerVersion) {
       throw new Error(`The API version "${apiVersion}" does not match ` + `the Worker version "${workerVersion}".`);
@@ -70994,7 +70994,11 @@ class XRef {
     }
 
     if (xrefEntry.uncompressed) {
-      xrefEntry = this.fetchUncompressed(ref, xrefEntry, suppressEncryption);
+      try {
+        xrefEntry = this.fetchUncompressed(ref, xrefEntry, suppressEncryption);
+      } catch (e) {
+        (0, _util.warn)('Bad (uncompressed) XRef entry');
+      }
     } else {
       xrefEntry = this.fetchCompressed(ref, xrefEntry, suppressEncryption);
     }
@@ -71026,12 +71030,7 @@ class XRef {
     const obj2 = parser.getObj();
     const obj3 = parser.getObj();
 
-    if (obj1 !== num) {
-      (0, _util.warn)(`Bad (uncompressed) XRef entry: ${ref}`);
-      return null;
-    }
-
-    if (obj2 !== gen || !(obj3 instanceof _primitives.Cmd)) {
+    if (obj1 !== num || obj2 !== gen || !(obj3 instanceof _primitives.Cmd)) {
       throw new _core_utils.XRefEntryException(`Bad (uncompressed) XRef entry: ${ref}`);
     }
 

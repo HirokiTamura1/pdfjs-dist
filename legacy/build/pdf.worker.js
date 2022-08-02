@@ -173,7 +173,7 @@ var WorkerMessageHandler = /*#__PURE__*/function () {
       var WorkerTasks = [];
       var verbosity = (0, _util.getVerbosityLevel)();
       var apiVersion = docParams.apiVersion;
-      var workerVersion = '2.10.377';
+      var workerVersion = '2.10.378';
 
       if (apiVersion !== workerVersion) {
         throw new Error("The API version \"".concat(apiVersion, "\" does not match ") + "the Worker version \"".concat(workerVersion, "\"."));
@@ -91269,7 +91269,11 @@ var XRef = /*#__PURE__*/function () {
       }
 
       if (xrefEntry.uncompressed) {
-        xrefEntry = this.fetchUncompressed(ref, xrefEntry, suppressEncryption);
+        try {
+          xrefEntry = this.fetchUncompressed(ref, xrefEntry, suppressEncryption);
+        } catch (e) {
+          (0, _util.warn)('Bad (uncompressed) XRef entry');
+        }
       } else {
         xrefEntry = this.fetchCompressed(ref, xrefEntry, suppressEncryption);
       }
@@ -91303,12 +91307,7 @@ var XRef = /*#__PURE__*/function () {
       var obj2 = parser.getObj();
       var obj3 = parser.getObj();
 
-      if (obj1 !== num) {
-        (0, _util.warn)("Bad (uncompressed) XRef entry: ".concat(ref));
-        return null;
-      }
-
-      if (obj2 !== gen || !(obj3 instanceof _primitives.Cmd)) {
+      if (obj1 !== num || obj2 !== gen || !(obj3 instanceof _primitives.Cmd)) {
         throw new _core_utils.XRefEntryException("Bad (uncompressed) XRef entry: ".concat(ref));
       }
 
